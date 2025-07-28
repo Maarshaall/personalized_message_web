@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Això pot no ser per tu</title>
+    <link rel="stylesheet" href="./projecte/css/lockscreen.css">
+</head>
+<body>
+    <div class="lock-screen">
+        <h1>Això pot no ser per tu</h1>
+        <p>Introdueix la contrasenya per accedir.</p>
+        <button id="accessButton">Accedir</button>
+    </div>
+    <script>
+        document.getElementById("accessButton").addEventListener("click", () => {
+            const password = prompt("Introdueix la contrasenya:");
+            if (password === "lalo") {
+                // Redirigeix a la pàgina principal si la contrasenya és correcta
+                window.location.href = "./projecte/portada.html";
+            } else {
+                alert("Accés denegat.");
+            }
+        });
+    </script>
+</body>
+</html>

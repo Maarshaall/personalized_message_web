@@ -1,0 +1,295 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe4e1;
+    color: #333;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e63946;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 15px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+header nav ul li a:hover {
+    background-color: #d62828;
+}
+
+.container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 1.2em;
+}
+
+
+
+#dailyMessage {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#dailyMessage img {
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+#dailyMessage a {
+    color: #e63946;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#dailyMessage a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #e63946;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #d62828;
+    transform: scale(1.05);
+}
+
+button:active {
+    background-color: #a81d1d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(0.98);
+}
+
+
+
+#countdownMessage {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e63946;
+}
+
+
+/* Estil de la llista dels dies */
+#daysList {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+}
+/* Cada element de la llista */
+#daysList li {
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #f7d9d9;
+    border: 1px solid #e63946;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    position: relative; /* Per assegurar el correcte comportament dels missatges */
+}
+
+/* Hover: quan el cursor passa sobre un element */
+#daysList li:hover {
+    background-color: #e63946;
+    color: #fff;
+    transform: scale(1.02);
+}
+
+/* Contenidor per als missatges dels dies */
+.messageContainer {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #fff; /* Assegura un bon contrast amb el text */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #333; /* Manté el color del text */
+    position: relative;
+    z-index: 1; /* Assegura que es mostri per sobre del botó */
+}
+
+/* Contingut del missatge visible */
+.messageContainer > .dailyMessage {
+    display: block;
+    color: #333; /* Assegura que el text dins del missatge es manté visible */
+}
+
+/* Imatges dins del missatge */
+.messageContainer img {
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Enllaços dins del missatge */
+.messageContainer a {
+    color: #e63946;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.messageContainer a:hover {
+    text-decoration: underline;
+}
+
+
+.responsiveIframe {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporció 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.responsiveIframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.responsiveVideo {
+    max-width: 100%; /* Assegura que no excedeixi l'ample del contenidor */
+    max-height: 100vh;
+    height: auto; /* Manté la proporció de l'aspecte */
+    border: none;
+    display: block; /* Centra el vídeo dins del contenidor */
+    margin: 0 auto; /* Ajust per centrar */
+}
+
+
+@media (min-width: 768px) {
+    #dailyMessage img,
+    .messageContainer img {
+        max-width: 60%; /* Redueix encara més la mida de les imatges */
+        max-height: 300px; /* Evita que siguin massa allargades */
+        height: auto; /* Manté la proporció */
+        display: block;
+        margin: 0 auto; /* Centrat */
+    }
+
+    .responsiveVideo {
+        max-width: 60%; /* Redueix la mida dels vídeos */
+        max-height: 70vh; /* Evita que siguin massa grans en pantalles grans */
+    }
+
+    .responsiveIframe {
+        width: 60%; /* Redueix la mida dels iframes */
+        margin: 0 auto; /* Centrat */
+    
+    }
+}
+
+/* Estils nous per al gràfic circular adaptats al teu estil */
+.progress-circle-container {
+    margin: 30px 0;
+}
+
+.progress-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #f7d9d9; /* Color de fons coherent amb el teu estil */
+    stroke-width: 10;
+}
+
+.circle-progress {
+    fill: none;
+    stroke: #e63946; /* Vermell principal del teu disseny */
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e63946; /* Vermell coherent amb la teva paleta */
+}
+
+.progress-info {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+.progress-info strong {
+    color: #e63946;
+    font-weight: bold;
+}
+
+/* Estils per a dispositius mòbils */
+@media (max-width: 600px) {
+    .progress-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .circle-text {
+        font-size: 2rem;
+    }
+}
+
+
+

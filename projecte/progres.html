@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progrés de la pàgina</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Progrés</h1>
+        <nav>
+            <ul>
+                <li><a href="portada.html">Tornar a l'inici</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <p>Aquí podràs veure quin és el progrès de la pàgina web. Els percentatges et diuen quant de la web pots veure (quants dies de 365) i quants dies estàn ja fets! Pero pensa que sempre es poden modificar els dies!!</p>
+        
+
+        <!-- Gràfic circular de progrés automàtic -->
+        <div class="progress-circle-container">
+            <h2>Progrés del que pots veure: <span id="auto-progress-value">0</span>%</h2>
+            <div class="progress-circle">
+                <svg viewBox="0 0 100 100">
+                    <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="circle-progress" cx="50" cy="50" r="45" 
+                            stroke-dasharray="283" stroke-dashoffset="283" id="auto-circle"></circle>
+                </svg>
+                <div class="circle-text"><span id="auto-circle-percentage">0</span>%</div>
+            </div>
+            <div class="progress-info">
+                <p>Dies completats: <strong id="auto-days-completed">0</strong> de 365</p>
+            </div>
+        </div>
+        <!-- Gràfic circular de progrés -->
+        <div class="progress-circle-container">
+            <h2>Progrés de desenvolupament: <span id="progress-value">70</span>%</h2>
+            <div class="progress-circle">
+                <svg viewBox="0 0 100 100">
+                    <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                    <circle class="circle-progress" id="manual-circle" cx="50" cy="50" r="45" 
+                            stroke-dasharray="283" stroke-dashoffset="84.9"></circle>
+                </svg>
+                <div class="circle-text"><span id="circle-percentage">70</span>%</div>
+            </div>
+            <div class="progress-info">
+                <p>Dies completats: <strong id="days-completed">255</strong> de 365</p>
+            </div>
+        </div>
+        
+    </div>
+
+    
+
+    <script>
+        // Configura el valor manual aquí (exemple: 200 dies)
+        const progressValue = 365;
+        const percentage = Math.round((progressValue / 365) * 100);
+        
+        // Calcula l'offset per al gràfic circular
+        const circumference = 283; // 2 * π * r (on r = 45)
+        const offset = circumference - (percentage / 100) * circumference;
+        
+        // Actualitza tots els elements
+        document.getElementById('progress-value').textContent = percentage;
+        document.getElementById('circle-percentage').textContent = percentage;
+        document.getElementById('days-completed').textContent = progressValue;
+        
+        // Actualitza el gràfic circular
+        document.querySelector('.circle-progress').style.strokeDashoffset = offset;
+        
+        // Canvia el color segons el percentatge (adaptat a la teva paleta)
+        const progressCircle = document.getElementById('manual-circle');
+        if (percentage < 30) {
+            progressCircle.style.stroke = '#d62828'; // Vermell més fosc
+        } else if (percentage < 70) {
+            progressCircle.style.stroke = '#e63946'; // Vermell principal
+        } else {
+            progressCircle.style.stroke = '#2a9d8f'; // Verd blavós per contrastar
+        }
+
+        function updateAutoProgress() {
+            const startDate = new Date('2025-01-30T00:00:00');
+            const endDate = new Date('2026-01-30T00:00:00');
+            const today = new Date();
+
+            // Limita el rang perquè no surti negatiu ni superior a 365
+            const oneDay = 1000 * 60 * 60 * 24;
+            let daysPassed = Math.floor((today - startDate) / oneDay) + 1;
+
+            if (daysPassed < 1) daysPassed = 0;
+            if (daysPassed > 365) daysPassed = 365;
+
+            const percentage = Math.round((daysPassed / 365) * 100);
+            const circumference = 283;
+            const offset = circumference - (percentage / 100) * circumference;
+
+            // Actualitza els valors
+            document.getElementById('auto-progress-value').textContent = percentage;
+            document.getElementById('auto-circle-percentage').textContent = percentage;
+            document.getElementById('auto-days-completed').textContent = daysPassed;
+
+            const autoCircle = document.getElementById('auto-circle');
+            autoCircle.style.strokeDashoffset = offset;
+
+            // Colors segons el percentatge
+            if (percentage < 30) {
+                autoCircle.style.stroke = '#d62828';
+            } else if (percentage < 70) {
+                autoCircle.style.stroke = '#e63946';
+            } else {
+                autoCircle.style.stroke = '#2a9d8f';
+            }
+        }
+
+        updateAutoProgress();
+    </script>
+</body>
+</html>
